@@ -24,8 +24,22 @@ public class RobotContainer {
   }
   
   private void configureBindings() {
-    driverOI.leftStick().whileTrue(new InstantCommand(
-    () -> climber.setVoltage(driverOI.getLeftY() * ClimberConstants.kVoltageMultiplier), climber
+    System.out.println("Bindings Configured!");
+    // driverOI.leftStick().whileTrue(new InstantCommand(
+    // () -> climber.setVoltage(driverOI.getLeftY() * ClimberConstants.kVoltageMultiplier), climber
+    // ));
+    driverOI.a().whileTrue(new InstantCommand(
+      () -> climber.setVoltage(8.0), climber
+    ));
+
+    driverOI.a().onFalse(new InstantCommand(
+      () -> climber.setVoltage(0.0), climber
+    ));
+    driverOI.x().whileTrue(new InstantCommand(
+      () -> climber.setVoltage(-2.0), climber
+    ));
+    driverOI.x().onFalse(new InstantCommand(
+      () -> climber.setVoltage(0.0), climber
     ));
   }
 }

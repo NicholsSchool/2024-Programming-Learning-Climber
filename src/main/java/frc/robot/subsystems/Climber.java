@@ -7,6 +7,8 @@ package frc.robot.subsystems;
 import frc.robot.Constants.CAN;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+
+import com.ctre.phoenix.Logger;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.controls.Follower;
 import com.ctre.phoenix6.hardware.TalonFX;
@@ -28,9 +30,11 @@ public class Climber extends SubsystemBase {
     config.MotorOutput.NeutralMode = NeutralModeValue.Brake;
     leftClimber.getConfigurator().apply(config);
     rightClimber.setControl(new Follower(CAN.kLeftClimbCAN, true));
+    
   }
 
   public void setVoltage(double voltage) {
     leftClimber.setVoltage(voltage);
+    System.out.println("Setting voltage to:" + voltage);
   }
 }
